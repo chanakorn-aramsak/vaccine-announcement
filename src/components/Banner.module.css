@@ -1,0 +1,34 @@
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bannerText {
+    position: absolute;
+    z-index: 2;
+    
+    color: black;  /* ปรับสีข้อความเป็นสีดำ */
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+}
+
+.bannerText h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.bannerText h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.bannerText h2 {
+    font-size: 1.2rem;
+}

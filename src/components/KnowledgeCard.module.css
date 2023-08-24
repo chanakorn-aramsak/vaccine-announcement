@@ -1,0 +1,24 @@
+.card {
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.info p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.info p strong {
+    font-weight: 600;
+}
