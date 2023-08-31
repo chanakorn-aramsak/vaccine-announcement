@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Banner = () => {
   return (
-    <div className="relative h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]">
+    <div className="relative h-screen w-screen"> {/* Changed to 100vh and 100vw */}
       <Image 
         src="/banner.png"
         alt="cover"
