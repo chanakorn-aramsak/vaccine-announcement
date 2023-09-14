@@ -16,7 +16,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative h-screen w-screen border-2 border-red-500 z-1000" onClick={handleImageClick}>
+    <div className="relative h-screen w-screen border-2 z-1000" onClick={handleImageClick}>
       <Image
         src={bannerImages[currentImageIndex]}
         alt="cover"
@@ -25,7 +25,7 @@ const Banner = () => {
         className="pointer-events-none"
       />
       <div
-        className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center border-2 border-blue-500 pointer-events-auto"
+        className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center border-2 pointer-events-auto"
       >
         <div className="text-black text-3xl md:text-5xl lg:text-6xl font-semibold">
           GET YOURSELF PROTECTED
