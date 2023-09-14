@@ -1,20 +1,23 @@
 import React from 'react';
-import styles from './Banner.module.css';
 import Image from 'next/image';
 
 const Banner = () => {
   return (
-    <div className={styles.banner}>
+    <div className="relative h-screen w-screen"> {/* Changed to 100vh and 100vw */}
       <Image 
-        src={'/banner.png'}
-        alt='cover'
+        src="/banner.png"
+        alt="cover"
         layout="fill"
-        objectFit='cover'
+        objectFit="cover"
+        className="absolute z-0"
       />
-      <div className={styles.bannerText}>
-        <h1>🌐 ระบบจองคิวฉีดวัคซีนโควิด-19</h1>
-        <h3>🏫 จุฬาลงกรณ์มหาวิทยาลัย</h3>
-        <h2>📢 ประชาสัมพันธ์การให้บริการวัคซีน</h2>
+      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
+        <div className="text-black text-3xl md:text-5xl lg:text-6xl font-semibold">
+          GET YOURSELF PROTECTED<br/>WITH VACCINES
+        </div>
+        <div className="text-black text-lg md:text-xl lg:text-2xl font-medium mt-4">
+          Book same day appointments for you and your kids
+        </div>
       </div>
     </div>
   );
