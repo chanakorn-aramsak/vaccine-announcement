@@ -1,17 +1,17 @@
-'use client'
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+"use client";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Booking = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    nationalID: '',
-    hospital: 'Chulalongkorn Hospital',
+    name: "",
+    nationalID: "",
+    hospital: "Chulalongkorn Hospital",
     date: new Date(),
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -19,25 +19,29 @@ const Booking = () => {
     });
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = (date: Date) => {
     setFormData({
       ...formData,
       date,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+    console.log("Form data submitted:", formData);
     // You can add code here to send the form data to your server or perform other actions.
   };
 
   return (
     <div className="container mx-auto mt-12">
-      <h1 className="text-2xl text-black font-semibold mb-4">Book a Vaccine Appointment</h1>
+      <h1 className="text-2xl text-black font-semibold mb-4">
+        Book a Vaccine Appointment
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">Full Name</label>
+          <label className="block text-sm font-medium text-gray-600">
+            Full Name
+          </label>
           <input
             type="text"
             name="name"
@@ -49,7 +53,9 @@ const Booking = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">National ID</label>
+          <label className="block text-sm font-medium text-gray-600">
+            National ID
+          </label>
           <input
             type="text"
             name="nationalID"
@@ -61,21 +67,29 @@ const Booking = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">Hospital</label>
+          <label className="block text-sm font-medium text-gray-600">
+            Hospital
+          </label>
           <select
             name="hospital"
             value={formData.hospital}
             onChange={handleInputChange}
             className="mt-1 p-2 w-full border rounded-md"
           >
-            <option value="Chulalongkorn Hospital">Chulalongkorn Hospital</option>
+            <option value="Chulalongkorn Hospital">
+              Chulalongkorn Hospital
+            </option>
             <option value="Rajavithi Hospital">Rajavithi Hospital</option>
-            <option value="Thammasat University Hospital">Thammasat University Hospital</option>
+            <option value="Thammasat University Hospital">
+              Thammasat University Hospital
+            </option>
           </select>
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">Date</label>
+          <label className="block text-sm font-medium text-gray-600">
+            Date
+          </label>
           <DatePicker
             selected={formData.date}
             onChange={handleDateChange}
@@ -83,7 +97,10 @@ const Booking = () => {
           />
         </div>
 
-        <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded">
+        <button
+          type="submit"
+          className="py-2 px-4 bg-blue-500 text-white rounded"
+        >
           Book Now
         </button>
       </form>
