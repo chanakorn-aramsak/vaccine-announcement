@@ -19,6 +19,14 @@ const Booking = () => {
     });
   };
 
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  
   const handleDateChange = (date: Date) => {
     setFormData({
       ...formData,
@@ -73,7 +81,7 @@ const Booking = () => {
           <select
             name="hospital"
             value={formData.hospital}
-            onChange={handleInputChange}
+            onChange={handleSelectChange}
             className="mt-1 p-2 w-full border rounded-md"
           >
             <option value="Chulalongkorn Hospital">
