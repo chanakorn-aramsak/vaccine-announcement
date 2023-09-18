@@ -72,6 +72,13 @@ export default function CardPanel() {
                 <HospitalCard
                   name={hospital.name}
                   imageSrc={hospital.imageSrc}
+                  onRatingChange={(newRating) =>
+                    dispatchReview({
+                      type: "add",
+                      hospitalName: hospital.name,
+                      rating: newRating,
+                    })
+                  }
                 />
               }
             />

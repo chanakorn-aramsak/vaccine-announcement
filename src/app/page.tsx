@@ -1,5 +1,5 @@
+'use client'
 import Image from "next/image";
-
 import Banner from "@/components/Banner";
 import HospitalCard from "@/components/HospitalCard";
 import Navbar from "@/components/Navbar";
@@ -13,9 +13,6 @@ export default function Home() {
       <Navbar />
       <Banner />
       <CardPanel />
-      
-
-      
     </main>
   );
 }

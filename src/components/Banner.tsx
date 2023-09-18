@@ -11,17 +11,15 @@ const bannerImages = [
 const Banner = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const handleImageClick = () => {
-    alert("Image clicked!");
     setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % bannerImages.length);
   };
 
   return (
-    <div className="relative h-screen w-screen border-2 z-1000" onClick={handleImageClick}>
+    <div className="relative h-screen w-screen" onClick={handleImageClick}>
       <Image
         src={bannerImages[currentImageIndex]}
         alt="cover"
         layout="fill"
-        objectFit="cover"
         className="pointer-events-none"
       />
       <div
