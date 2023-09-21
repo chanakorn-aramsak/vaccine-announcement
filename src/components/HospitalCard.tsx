@@ -1,23 +1,48 @@
-import React from 'react';
+"use client";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import Image from "next/image";
+import { Rating } from "@mui/material";
 
 interface HospitalCardProps {
   name: string;
   imageSrc: string;
+  onRatingChange: (newRating: number | null) => void;
 }
 
-const HospitalCard: React.FC<HospitalCardProps> = ({ name, imageSrc }) => {
+const HospitalCard: React.FC<HospitalCardProps> = ({
+  name,
+  imageSrc,
+  onRatingChange,
+}) => {
+  const [value, setValue] = useState<number | null>(0);
+  const setRating = (event: any, newValue: number | null) => {
+    console.log("New Rating Value: ", newValue);
+    onRatingChange(newValue); // Call the function passed as a prop
+    setValue(newValue);
+  };
   return (
-    <div className="flex flex-col items-center justify-between max-w-sm bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-200 ease-in-out">
-      <div className="relative w-full h-48">
-        <img className="absolute w-full h-full object-cover" src={imageSrc} alt={name} />
+    <div className="max-w-md w-[1/3] h-[300px] rounded-lg shadow-lg bg-white">
+      <div className="relative w-full h-[70%] rounded-t-lg ">
+        <Image
+          className="object-cover rounded-t-lg"
+          src={imageSrc}
+          fill={true}
+          alt={name}
+          layout="fill"
+        />
       </div>
-      <div className="flex flex-col items-start justify-between w-full p-4">
-        <div className="font-semibold text-lg mb-2 text-black">{name}</div>
+      <div className="w-full h-[30%] font-bold text-xl mb-2 text-black text-center">
+        {name}
       </div>
-      <div className="w-full p-4 flex justify-end">
+      <div className="w-full h-[30%] font-bold text-xl mb-2 text-black text-center">
+        <Rating
+          name="hospital-rating"
+          value={value}
+          onChange={setRating}
+        />
       </div>
     </div>
   );
-}
+};
 
 export default HospitalCard;
