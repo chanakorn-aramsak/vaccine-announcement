@@ -86,11 +86,11 @@ export default function CardPanel() {
         ))}
       </div>
       <div className="flex justify-center mt-4">
-        <div className="bg-blue-950 shadow-md rounded-lg p-4">
-          <h1 className="text-center text-3xl font-bold">Review</h1>
+        <div className="bg-blue-700 shadow-md rounded-lg p-4">
+          <h1 className="text-center text-3xl font-bold text-white">Review</h1>
           {Array.from(allReviews).map(([name, rating]) => (
             <div
-              className="bg-blue-500 my-2 p-2 rounded"
+              className="bg-blue-300 my-2 p-2 rounded"
               key={name}
               onClick={() =>
                 dispatchReview({ type: "remove", hospitalName: name, rating })

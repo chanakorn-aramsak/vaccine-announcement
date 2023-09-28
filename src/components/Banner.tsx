@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 const bannerImages = [
-  "/banner1.png",
+  "/banner1.jpg",
   "/banner2.jpg",
   "/banner3.jpg",
   "/banner4.jpg",
