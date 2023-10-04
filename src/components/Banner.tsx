@@ -32,7 +32,7 @@ const Banner = () => {
         className="pointer-events-none"
       />
       <div
-        className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center border-2 pointer-events-auto"
+        className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-auto"
       >
         <div className="text-black text-3xl md:text-5xl lg:text-6xl font-semibold">
           GET YOURSELF PROTECTED

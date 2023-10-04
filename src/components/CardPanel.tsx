@@ -13,17 +13,17 @@ const prompt = Prompt({
 
 const hospitalData = [
   {
-    id: 1,
+    id: "001",
     name: "Chulalongkorn Hospital",
     imageSrc: "/chula.jpg",
   },
   {
-    id: 2,
+    id: "002",
     name: "Rajavithi Hospital",
     imageSrc: "/rajavithi.jpg",
   },
   {
-    id: 3,
+    id: "003",
     name: "Thammasat University Hospital",
     imageSrc: "/thammasat.jpg",
   },
@@ -69,25 +69,24 @@ export default function CardPanel() {
       </div>
       <div className="flex justify-center gap-4 mt-4">
         {hospitalData.map((hospital, index) => (
-          <Link href={`/hospital/${hospital.id}`} key={hospital.id}>
-            <div className="mt-4 w-72 h-96" key={index}>
-              <InteractionCard
-                serverComponent={
-                  <HospitalCard
-                    name={hospital.name}
-                    imageSrc={hospital.imageSrc}
-                    onRatingChange={(newRating) =>
-                      dispatchReview({
-                        type: "add",
-                        hospitalName: hospital.name,
-                        rating: newRating,
-                      })
-                    }
-                  />
-                }
-              />
-            </div>
-          </Link>
+          <div className="mt-4 w-72 h-96" key={index}>
+            <InteractionCard
+              serverComponent={
+                <HospitalCard
+                  hid={hospital.id}
+                  name={hospital.name}
+                  imageSrc={hospital.imageSrc}
+                  onRatingChange={(newRating) =>
+                    dispatchReview({
+                      type: "add",
+                      hospitalName: hospital.name,
+                      rating: newRating,
+                    })
+                  }
+                />
+              }
+            />
+          </div>
         ))}
       </div>
       <div className="flex justify-center mt-4">
