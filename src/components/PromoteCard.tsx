@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { VideoPlayer } from "./VideoPlayer";
+import VideoPlayer from "./VideoPlayer";
 import { useWindowListener } from "@/hooks/useWindowListener";
 
 export function PromoteCard() {
@@ -9,12 +9,18 @@ export function PromoteCard() {
   useWindowListener("contextmenu", (e) => {
     e.preventDefault();
   });
-
+  const handleVideoStateChange = (state: boolean) => {
+    setPlaying(state);
+  };
   return (
     <div className="w-screen h-screen bg-white flex items-center justify-center p-8">
       <div className="bg-white p-6 rounded-lg shadow-xl flex items-center space-x-10">
         <div className="border border-gray-300 p-6 rounded-lg">
-          <VideoPlayer isPlaying={playing} vdoSrc="getvaccine.mp4" />
+          <VideoPlayer
+            isPlaying={playing}
+            vdoSrc="getvaccine.mp4"
+            onStateChange={handleVideoStateChange}
+          />
         </div>
         <div className="flex flex-col space-y-4">
           <div className="text-xl">Get your vaccine today.</div>
