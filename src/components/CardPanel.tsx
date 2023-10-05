@@ -3,7 +3,7 @@ import { useReducer } from "react";
 import HospitalCard from "./HospitalCard";
 import InteractionCard from "./InteractionCard";
 import { Prompt } from "next/font/google";
-
+import Link from "next/link";
 const prompt = Prompt({
   subsets: ["latin"],
   weight: "400",
@@ -13,14 +13,17 @@ const prompt = Prompt({
 
 const hospitalData = [
   {
+    id: "001",
     name: "Chulalongkorn Hospital",
     imageSrc: "/chula.jpg",
   },
   {
+    id: "002",
     name: "Rajavithi Hospital",
     imageSrc: "/rajavithi.jpg",
   },
   {
+    id: "003",
     name: "Thammasat University Hospital",
     imageSrc: "/thammasat.jpg",
   },
@@ -70,6 +73,7 @@ export default function CardPanel() {
             <InteractionCard
               serverComponent={
                 <HospitalCard
+                  hid={hospital.id}
                   name={hospital.name}
                   imageSrc={hospital.imageSrc}
                   onRatingChange={(newRating) =>
@@ -86,14 +90,18 @@ export default function CardPanel() {
         ))}
       </div>
       <div className="flex justify-center mt-4">
-        <div className="bg-blue-700 shadow-md rounded-lg p-4">
-          <h1 className="text-center text-3xl font-bold text-white">Review</h1>
+        <div className="shadow-lg rounded-lg p-4 ">
+          <h1 className="text-center text-3xl font-bold text-black">Review</h1>
           {Array.from(allReviews).map(([name, rating]) => (
             <div
               className="bg-blue-300 my-2 p-2 rounded"
               key={name}
               onClick={() =>
-                dispatchReview({ type: "remove", hospitalName: name, rating })
+                dispatchReview({
+                  type: "remove",
+                  hospitalName: name,
+                  rating: rating,
+                })
               }
             >
               <h1 className="text-center text-xl font-bold">

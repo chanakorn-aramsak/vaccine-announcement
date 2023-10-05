@@ -41,7 +41,7 @@ const Booking = () => {
   };
 
   return (
-    <div className="container mx-auto mt-12">
+    <div className="container mx-auto mt-20">
       <h1 className="text-2xl text-black font-semibold mb-4">
         Book a Vaccine Appointment
       </h1>
