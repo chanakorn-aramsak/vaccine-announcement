@@ -1,6 +1,7 @@
 'use client'
 import CardPanel from "@/components/CardPanel";
 
-export default function HospitalCard() {
+const  HospitalCard = () => {
   return <CardPanel />;
 }
+export default HospitalCard;

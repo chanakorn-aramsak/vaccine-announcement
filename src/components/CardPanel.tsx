@@ -29,7 +29,7 @@ const hospitalData = [
   },
 ];
 
-export default function CardPanel() {
+const CardPanel = () => {
   const reviewReducer = (
     state: Map<string, number | null>,
     action: { type: string; hospitalName: string; rating: number | null }
@@ -114,3 +114,5 @@ export default function CardPanel() {
     </div>
   );
 }
+
+export default CardPanel;
