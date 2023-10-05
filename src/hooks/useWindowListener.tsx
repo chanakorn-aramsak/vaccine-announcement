@@ -1,11 +1,14 @@
 'use client'
 import { useEffect } from "react";
-export function useWindowListener(eventType: string, listener: EventListener) {
+
+const useWindowListener = (eventType: string, listener: EventListener): void => {
     useEffect(() => {
-        window.addEventListener(eventType, listener)
+        window.addEventListener(eventType, listener);
 
         return () => {
-            window.removeEventListener(eventType, listener)
-        }
-    }, [])
+            window.removeEventListener(eventType, listener);
+        };
+    }, [eventType, listener]);
 }
+
+export default useWindowListener;

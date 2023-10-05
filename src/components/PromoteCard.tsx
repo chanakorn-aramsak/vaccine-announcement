@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
-import { useWindowListener } from "@/hooks/useWindowListener";
+import useWindowListener from "@/hooks/useWindowListener";
 
-export function PromoteCard() {
-  const [playing, setPlaying] = useState(true);
+const PromoteCard: React.FC = () =>{
+  const [playing, setPlaying] = useState(false);
 
   useWindowListener("contextmenu", (e) => {
     e.preventDefault();
@@ -35,3 +35,4 @@ export function PromoteCard() {
     </div>
   );
 }
+export default PromoteCard;
