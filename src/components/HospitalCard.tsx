@@ -2,13 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import { Rating } from "@mui/material";
 import Link from "next/link";
+import { HospitalCardProps } from "@/interfaces/HospitalCardProps";
 
-interface HospitalCardProps {
-  hid:string;
-  name: string;
-  imageSrc: string;
-  onRatingChange: (newRating: number | null) => void;
-}
+
 
 const HospitalCard: React.FC<HospitalCardProps> = ({
   hid,
