@@ -1,6 +1,10 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { Link } from "@mui/material";
+import { getServerSession } from "next-auth";
 import React from "react";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <nav className="bg-blue-700 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
@@ -36,6 +40,23 @@ const Navbar = () => {
               >
                 Book now
               </a>
+            </li>
+            <li>
+              {session ? (
+                <a
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:text-white md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:hover:text-blue-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  href="/api/auth/signout"
+                >
+                  Sign Out
+                </a>
+              ) : (
+                <a
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:text-white md:border-0 md:hover:text-blue-300 md:p-0 dark:text-white md:hover:text-blue-300 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  href="/api/auth/signin"
+                >
+                  Sign In
+                </a>
+              )}
             </li>
           </ul>
         </div>

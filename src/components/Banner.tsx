@@ -1,8 +1,9 @@
 // Banner.tsx or Banner.jsx
-'use client'
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const bannerImages = [
   "/banner1.jpg",
@@ -14,13 +15,16 @@ const bannerImages = [
 const Banner = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const router = useRouter();
+  const { data: session } = useSession();
 
   const handleImageClick = () => {
-    setCurrentImageIndex((currentImageIndex) => (currentImageIndex + 1) % bannerImages.length);
+    setCurrentImageIndex(
+      (currentImageIndex) => (currentImageIndex + 1) % bannerImages.length
+    );
   };
 
   const handleButtonClick = () => {
-    router.push('/hospital');
+    router.push("/hospital");
   };
 
   return (
@@ -31,9 +35,12 @@ const Banner = () => {
         layout="fill"
         className="pointer-events-none"
       />
-      <div
-        className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-auto"
-      >
+      {session ? (
+        <div className="z-30 absolute top-20 right-10 text-xl bg-blue-200 m-4 p-4">
+          Hello, {session.user?.name}
+        </div>
+      ) : null}
+      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-auto">
         <div className="text-black text-3xl md:text-5xl lg:text-6xl font-semibold">
           GET YOURSELF PROTECTED
           <br />
