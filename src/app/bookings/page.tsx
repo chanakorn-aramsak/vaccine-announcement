@@ -1,119 +1,50 @@
-"use client";
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React from "react";
+import Form from "@/components/Form";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import getUserProfile from "@/libs/getUserProfile";
 
-const Booking = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    nationalID: "",
-    hospital: "Chulalongkorn Hospital",
-    date: new Date(),
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  
-  const handleDateChange = (date: Date) => {
-    setFormData({
-      ...formData,
-      date,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form data submitted:", formData);
-    // You can add code here to send the form data to your server or perform other actions.
-  };
+export default async function Booking() {
+  const session = await getServerSession(authOptions);
+  let profile = null;
+  if (session) {
+    profile = await getUserProfile(session.user.token);
+  }
 
   return (
-    <div className="container mx-auto mt-20">
-      <h1 className="text-2xl text-black font-semibold mb-4">
-        Book a Vaccine Appointment
-      </h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">
-            Full Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className="mt-1 p-2 w-full border rounded-md"
-            required
-          />
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="container mx-auto p-4">
+        <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
+          {session ? (
+            <>
+              <h2 className="text-2xl font-bold mb-4">User Information</h2>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm font-semibold">Name:</p>
+                  <p>{profile.data.name}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">Email:</p>
+                  <p>{profile.data.email}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">Tel.:</p>
+                  <p>{profile.data.tel}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">Member Since:</p>
+                  <p>{profile.data.createdAt.toString()}</p>
+                </div>
+              </div>
+            </>
+          ) : null}
         </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">
-            National ID
-          </label>
-          <input
-            type="text"
-            name="nationalID"
-            value={formData.nationalID}
-            onChange={handleInputChange}
-            className="mt-1 p-2 w-full border rounded-md"
-            required
-          />
+        <div className="bg-white rounded-lg shadow-lg p-4">
+          <h2 className="text-2xl font-bold mb-4">Booking Information</h2>
+          <Form />
         </div>
-
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">
-            Hospital
-          </label>
-          <select
-            name="hospital"
-            value={formData.hospital}
-            onChange={handleSelectChange}
-            className="mt-1 p-2 w-full border rounded-md"
-          >
-            <option value="Chulalongkorn Hospital">
-              Chulalongkorn Hospital
-            </option>
-            <option value="Rajavithi Hospital">Rajavithi Hospital</option>
-            <option value="Thammasat University Hospital">
-              Thammasat University Hospital
-            </option>
-          </select>
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">
-            Date
-          </label>
-          <DatePicker
-            selected={formData.date}
-            onChange={handleDateChange}
-            className="mt-1 p-2 w-full border rounded-md"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="py-2 px-4 bg-blue-500 text-white rounded"
-        >
-          Book Now
-        </button>
-      </form>
+      </div>
     </div>
   );
-};
-
-export default Booking;
+}
