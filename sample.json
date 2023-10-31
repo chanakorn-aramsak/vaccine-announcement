@@ -1,0 +1,15 @@
+{
+    "name": "staff",
+    "email": "staff@vaccinebooking.com",
+    "tel": "0889994444",
+    "role": "admin",
+    "password": "g00dH3@!th",
+    "createdAt": "2023-08-20"
+  }
+  
+
+  {
+    "email": "staff@vaccinebooking.com",
+    "password": "g00dH3@!th"
+  }
+      
