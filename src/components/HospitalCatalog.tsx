@@ -12,26 +12,6 @@ const prompt = Prompt({
   variable: "--font-prompt",
 });
 
-const reviewReducer = (
-  state: Map<string, number | null>,
-  action: { type: string; hospitalName: string; rating: number | null }
-) => {
-  if (action.rating == null) {
-    action.rating = 0;
-  }
-  switch (action.type) {
-    case "add":
-      const newStateAdd = new Map(state);
-      newStateAdd.set(action.hospitalName, action.rating);
-      return newStateAdd;
-    case "remove":
-      const newStateRemove = new Map(state);
-      newStateRemove.delete(action.hospitalName);
-      return newStateRemove;
-    default:
-      return state;
-  }
-};
 
 const HospitalCatalog = async ({
   hospitalsResponse,
@@ -40,17 +20,22 @@ const HospitalCatalog = async ({
 }) => {
   // const [isRatingClicked, setIsRatingClicked] = useState(false);
 
+  const [allReviews, setAllReviews] = useState(new Map());
+  const [isRatingClicked, setIsRatingClicked] = useState(false);
+
   const hospitalData = (await hospitalsResponse).data;
 
-  const [allReviews, dispatchReview] = useReducer(reviewReducer, new Map());
-
   const handleRatingChange = (newRating: number, hospitalName: string) => {
-    dispatchReview({ type: "add", hospitalName, rating: newRating });
-    // setIsRatingClicked(true);
+    const newReviews = new Map(allReviews);
+    newReviews.set(hospitalName, newRating);
+    setAllReviews(newReviews);
+    setIsRatingClicked(true);
   };
 
   const handleReviewRemove = (hospitalName: string) => {
-    dispatchReview({ type: "remove", hospitalName, rating: null });
+    const newReviews = new Map(allReviews);
+    newReviews.delete(hospitalName);
+    setAllReviews(newReviews);
   };
 
   return (
