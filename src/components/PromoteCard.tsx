@@ -4,7 +4,7 @@ import VideoPlayer from "./VideoPlayer";
 import useWindowListener from "@/hooks/useWindowListener";
 
 const PromoteCard: React.FC = () =>{
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
 
   useWindowListener("contextmenu", (e) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ const PromoteCard: React.FC = () =>{
         <div className="flex flex-col space-y-4">
           <div className="text-xl">Get your vaccine today.</div>
           <button
+            id="play-button"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
             onClick={() => setPlaying(!playing)}
           >
