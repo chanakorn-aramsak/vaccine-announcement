@@ -51,6 +51,7 @@ const Banner = () => {
         </div>
       </div>
       <button
+        id="navigate-hospital-button"
         className="absolute bottom-4 right-4 p-4 bg-blue-500 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         onClick={handleButtonClick}
       >
