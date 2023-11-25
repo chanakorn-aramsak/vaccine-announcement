@@ -36,3 +36,17 @@ next-env.d.ts
 
 # pdf
 *.pdf
+
+# cypress
+/cypress
+**/*.cy.tsx
+cypress.config.ts
+
+
+# jest
+/__tests__
+**/*.test.tsx
+**/*.test.ts
+jest.config.js
+jest.setup.js
+```
