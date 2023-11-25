@@ -42,7 +42,6 @@ const HospitalCatalog = async ({
         const newReviews = new Map(allReviews);
         newReviews.set(hospitalName, newRating);
         dispatchReview({type:'add', hospitalName: hospitalName, score: newRating });
-        setIsRatingClicked(true);
     };
 
     const handleReviewRemove = (hospitalName: string) => {
